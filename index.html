@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VASI France — VTC à la demande</title>
+<meta name="description" content="VASI France — réservation de chauffeurs VTC professionnels.">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#101828;background:#fff}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;border-bottom:1px solid #eaecf0;background:#fff;position:sticky;top:0;z-index:10}
+.logo{font-size:30px;font-weight:900;letter-spacing:-1.5px}.logo span{color:#3159d8}
+.navlinks{display:flex;align-items:center;gap:22px}.nav a{text-decoration:none;color:#344054;font-weight:650}.btn{border:0;background:#3159d8;color:#fff;border-radius:12px;padding:14px 22px;font-weight:800;cursor:pointer}
+.hero{padding:82px 6%;min-height:620px;display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center;background:linear-gradient(135deg,#f7f9ff,#fff)}
+.badge{display:inline-block;background:#eaf0ff;color:#3159d8;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:1px}
+h1{font-size:64px;line-height:1.02;letter-spacing:-3px;margin:18px 0}.hero p{font-size:20px;color:#667085;line-height:1.6;max-width:600px}
+.actions{display:flex;gap:12px;margin-top:30px}.secondary{background:#fff;color:#3159d8;border:1px solid #cfd6e4}
+.map{height:440px;border-radius:30px;overflow:hidden;position:relative;background:#dcefcf;box-shadow:0 25px 70px #1018281a}
+.map:before{content:"";position:absolute;inset:-20%;background:repeating-linear-gradient(28deg,transparent 0 60px,#fff8 61px 67px),repeating-linear-gradient(118deg,transparent 0 85px,#fff8 86px 92px)}
+.road{position:absolute;width:130%;height:82px;background:#fff;left:-15%;top:47%;transform:rotate(-22deg);box-shadow:0 0 0 2px #d3d9e2}.road:after{content:"";position:absolute;left:0;right:0;top:39px;border-top:4px dashed #aab3c2}
+.pin{position:absolute;font-size:40px;z-index:2}.pin.a{left:22%;top:25%}.pin.b{right:20%;bottom:25%}.car{position:absolute;left:47%;top:44%;font-size:45px;z-index:3}
+.section{padding:80px 6%}.center{text-align:center}.eyebrow{color:#3159d8;font-size:12px;font-weight:900;letter-spacing:2px}.center h2{font-size:40px;letter-spacing:-1.5px;margin:10px}.muted{color:#667085}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}.card{padding:28px;border:1px solid #eaecf0;border-radius:20px}.icon{font-size:30px}.card p{color:#667085;line-height:1.6}
+.driver{margin:0 6% 80px;padding:55px;border-radius:25px;background:#101828;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:25px}.driver p{color:#98a2b3}.driver h2{font-size:36px;margin:8px 0}
+.legal{padding:35px 6%;border-top:1px solid #eaecf0;display:flex;gap:22px;flex-wrap:wrap;font-size:13px}.legal a{color:#667085;text-decoration:none}
+.footer{padding:24px 6%;border-top:1px solid #eaecf0;display:flex;justify-content:space-between;color:#98a2b3;font-size:13px}
+@media(max-width:800px){.navlinks a{display:none}.hero{grid-template-columns:1fr;padding-top:55px}.hero h1{font-size:48px}.cards{grid-template-columns:1fr}.driver{display:block;margin:0 6% 50px}}
+</style>
+</head>
+<body>
+<nav class="nav">
+<div class="logo"><span>V</span> VASI</div>
+<div class="navlinks">
+<a href="#services">Services</a><a href="#drivers">Chauffeurs</a><a href="#cities">Villes</a><a href="#legal">Infos</a>
+<button class="btn" onclick="alert('La réservation VASI sera connectée ici.')">Réserver</button>
+</div>
+</nav>
+
+<section class="hero">
+<div>
+<span class="badge">VASI FRANCE 🇫🇷</span>
+<h1>Votre trajet VTC, simplement.</h1>
+<p>Réservez un chauffeur VTC professionnel en France avec une expérience claire, confortable et moderne. Prix estimé, suivi du trajet et paiement sécurisé.</p>
+<div class="actions">
+<button class="btn" onclick="alert('Le parcours de réservation sera connecté ici.')">Réserver un trajet</button>
+<button class="btn secondary" onclick="alert('Le téléchargement de l’application sera connecté ici.')">Télécharger l’app</button>
+</div>
+</div>
+<div class="map">
+<div class="road"></div><div class="pin a">📍</div><div class="pin b">📍</div><div class="car">🚘</div>
+</div>
+</section>
+
+<section class="section" id="services">
+<div class="center"><div class="eyebrow">POUR LES PASSAGERS</div><h2>Une expérience VASI claire.</h2><p class="muted">De la réservation au reçu, tout au même endroit.</p></div>
+<div class="cards">
+<div class="card"><div class="icon">📍</div><h3>Suivi en temps réel</h3><p>Visualisez votre chauffeur et le statut du trajet en temps réel.</p></div>
+<div class="card"><div class="icon">💳</div><h3>Paiement sécurisé</h3><p>Paiement par carte et reçu après chaque trajet.</p></div>
+<div class="card"><div class="icon">🛡️</div><h3>Chauffeurs VTC</h3><p>Les documents professionnels requis sont vérifiés selon le processus VASI.</p></div>
+</div>
+</section>
+
+<section class="section" id="cities" style="padding-top:20px">
+<div class="center"><div class="eyebrow">FRANCE</div><h2>Commencez en France.</h2><p class="muted">VASI est conçu pour se déployer progressivement ville par ville.</p></div>
+</section>
+
+<section class="driver" id="drivers">
+<div><div class="eyebrow">DEVENIR CHAUFFEUR VTC</div><h2>Gardez davantage de vos revenus.</h2><p>Commission VASI par défaut : <strong>15 %</strong>. Le chauffeur reçoit 85 % du tarif de course, hors frais applicables.</p></div>
+<button class="btn" onclick="alert('L’inscription chauffeur sera connectée ici.')">Devenir chauffeur</button>
+</section>
+
+<div class="legal" id="legal">
+<a href="#">CGU</a><a href="#">CGV</a><a href="#">Politique de confidentialité</a><a href="#">RGPD</a><a href="#">Contrat chauffeur</a><a href="#">Annulation & remboursement</a><a href="#">Conditions de paiement</a><a href="#">Cookies</a><a href="#">Mentions légales</a><a href="#">Contact</a>
+</div>
+<footer class="footer"><span>© 2026 VASI France</span><span>France 🇫🇷</span></footer>
+</body>
+</html>
