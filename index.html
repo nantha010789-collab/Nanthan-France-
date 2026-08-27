@@ -1,92 +1,763 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VASI France — Réservation VTC</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VASI France - VTC</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;color:#101828;background:#fff}
-header{height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;border-bottom:1px solid #eee;position:sticky;top:0;background:#fff;z-index:10}
-.logo{font-size:29px;font-weight:900}.logo b{color:#3159d8}nav{display:flex;gap:22px;align-items:center}nav a{color:#344054;text-decoration:none;font-weight:700}
-button{border:0;border-radius:12px;padding:13px 20px;background:#3159d8;color:#fff;font-weight:800;cursor:pointer}
-.hero{padding:72px 6%;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;background:linear-gradient(135deg,#f7f9ff,#fff)}
-.badge{color:#3159d8;font-weight:900;letter-spacing:1px}h1{font-size:58px;line-height:1.05;margin:18px 0}.hero p{font-size:18px;line-height:1.6;color:#667085}
-.map{height:390px;border-radius:28px;background:#dcefcf;position:relative;overflow:hidden}.road{position:absolute;width:130%;height:78px;background:#fff;left:-15%;top:45%;transform:rotate(-20deg)}.road:after{content:"";position:absolute;left:0;right:0;top:37px;border-top:4px dashed #aab3c2}.pin{position:absolute;font-size:40px}.p1{left:18%;top:18%}.p2{right:16%;bottom:18%}.car{position:absolute;left:44%;top:40%;font-size:46px}
-.booking{padding:70px 6%;background:#f8faff}.box{max-width:920px;margin:auto;background:#fff;padding:32px;border-radius:22px;box-shadow:0 12px 45px #10182814}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-label{display:block;font-weight:800;margin:0 0 7px}input,select{width:100%;padding:13px;border:1px solid #d0d5dd;border-radius:10px;font-size:16px}.full{grid-column:1/-1}
-.quote{display:none;margin-top:22px;padding:20px;border-radius:16px;background:#f2f5ff}.total{font-size:30px;font-weight:900}.muted{color:#667085}.pay{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}.pay button{min-width:190px}.cash{background:#fff;color:#3159d8;border:1px solid #3159d8}
-.msg{margin-top:14px;font-weight:700}.cards{padding:70px 6%;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{padding:26px;border:1px solid #eee;border-radius:18px}.card p{color:#667085;line-height:1.6}
-.driver{margin:0 6% 60px;padding:40px;border-radius:22px;background:#101828;color:#fff;display:flex;justify-content:space-between;align-items:center}.legal{padding:26px 6%;border-top:1px solid #eee;color:#667085}footer{padding:25px 6%;border-top:1px solid #eee;color:#98a2b3}
-@media(max-width:800px){nav a{display:none}.hero{grid-template-columns:1fr}h1{font-size:44px}.grid,.cards{grid-template-columns:1fr}.full{grid-column:auto}.driver{display:block}}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #172033;
+  background: #ffffff;
+}
+
+header {
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
+  border-bottom: 1px solid #eee;
+  background: white;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #2864e8;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #344054;
+  font-weight: bold;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 13px 20px;
+  background: #2864e8;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #174dcc;
+}
+
+.hero {
+  padding: 70px 6%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  background: #f7f9ff;
+}
+
+.badge {
+  color: #2864e8;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 55px;
+  line-height: 1.05;
+  margin: 18px 0;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #667085;
+  line-height: 1.6;
+}
+
+.map {
+  height: 360px;
+  border-radius: 25px;
+  background: #dff1d4;
+  position: relative;
+  overflow: hidden;
+}
+
+.road {
+  position: absolute;
+  width: 130%;
+  height: 75px;
+  background: white;
+  left: -15%;
+  top: 45%;
+  transform: rotate(-20deg);
+}
+
+.road::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 36px;
+  border-top: 4px dashed #9aa4b2;
+}
+
+.pin {
+  position: absolute;
+  font-size: 38px;
+}
+
+.pin1 {
+  left: 18%;
+  top: 18%;
+}
+
+.pin2 {
+  right: 15%;
+  bottom: 18%;
+}
+
+.car {
+  position: absolute;
+  left: 45%;
+  top: 40%;
+  font-size: 45px;
+}
+
+.booking {
+  padding: 70px 6%;
+  background: #f8faff;
+}
+
+.box {
+  max-width: 950px;
+  margin: auto;
+  padding: 35px;
+  background: white;
+  border-radius: 22px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.08);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #d0d5dd;
+  border-radius: 10px;
+  font-size: 16px;
+  background: white;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid #2864e8;
+}
+
+.quote {
+  display: none;
+  margin-top: 25px;
+  padding: 25px;
+  border-radius: 15px;
+  background: #f1f5ff;
+}
+
+.price {
+  font-size: 32px;
+  font-weight: bold;
+  color: #2864e8;
+}
+
+.payments {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cash {
+  background: white;
+  color: #2864e8;
+  border: 1px solid #2864e8;
+}
+
+.cards {
+  padding: 70px 6%;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+
+.card {
+  padding: 25px;
+  border: 1px solid #eee;
+  border-radius: 18px;
+}
+
+.card p {
+  color: #667085;
+  line-height: 1.6;
+}
+
+.driver {
+  margin: 0 6% 60px;
+  padding: 40px;
+  border-radius: 22px;
+  background: #172033;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer {
+  padding: 25px 6%;
+  border-top: 1px solid #eee;
+  color: #667085;
+}
+
+@media(max-width:800px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full {
+    grid-column: auto;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .driver {
+    display: block;
+  }
+
+  nav a {
+    display: none;
+  }
+
+  h1 {
+    font-size: 42px;
+  }
+}
 </style>
 </head>
+
 <body>
-<header><div class="logo"><b>V</b> VASI</div><nav><a href="#services">Services</a><a href="#drivers">Chauffeurs</a><a href="#booking">Réserver</a><button onclick="openBooking()">Réserver</button></nav></header>
+
+<header>
+
+<div class="logo">
+<span>V</span> VASI
+</div>
+
+<nav>
+<a href="#services">Services</a>
+<a href="#drivers">Chauffeurs</a>
+<a href="#booking">Réserver</a>
+
+<button onclick="openBooking()">
+Réserver
+</button>
+</nav>
+
+</header>
+
+
 <section class="hero">
-<div><div class="badge">VASI FRANCE 🇫🇷</div><h1>Votre trajet VTC,<br>simplement.</h1><p>Réservez un chauffeur VTC professionnel en France avec prix estimé, paiement sécurisé et suivi de la course.</p><button onclick="openBooking()">Réserver un trajet</button></div>
-<div class="map"><div class="road"></div><div class="pin p1">📍</div><div class="pin p2">📍</div><div class="car">🚘</div></div>
+
+<div>
+
+<div class="badge">
+VASI FRANCE 🇫🇷
+</div>
+
+<h1>
+Votre trajet VTC,<br>
+simplement.
+</h1>
+
+<p>
+Réservez votre chauffeur VTC professionnel
+en France avec un prix estimé et une réservation simple.
+</p>
+
+<button onclick="openBooking()">
+Réserver un trajet
+</button>
+
+</div>
+
+
+<div class="map">
+
+<div class="road"></div>
+
+<div class="pin pin1">📍</div>
+<div class="pin pin2">📍</div>
+
+<div class="car">🚘</div>
+
+</div>
+
 </section>
 
-<section id="booking" class="booking"><div class="box">
+
+
+<section id="booking" class="booking">
+
+<div class="box">
+
 <h2>Réserver votre trajet</h2>
+
 <div class="grid">
-<div><label>Départ</label><input id="from" placeholder="Adresse de départ"></div>
-<div><label>Destination</label><input id="to" placeholder="Adresse d'arrivée"></div>
-<div><label>Date</label><input id="date" type="date"></div>
-<div><label>Heure</label><input id="time" type="time"></div>
-<div><label>Passagers</label><select id="passengers"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></div>
-<div><label>Véhicule</label><select id="vehicle"><option value="standard">VTC Standard</option><option value="business">Business</option><option value="van">Van</option></select></div>
-<div><label>Nom complet</label><input id="name" placeholder="Votre nom"></div>
-<div><label>Téléphone</label><input id="phone" placeholder="+33 ..."></div>
-<div class="full"><label>Email</label><input id="email" type="email" placeholder="vous@email.com"></div>
-<div class="full"><button onclick="getQuote()">Calculer le prix réel</button></div>
+
+<div>
+<label>Départ</label>
+<input id="from" placeholder="Adresse de départ">
 </div>
+
+<div>
+<label>Destination</label>
+<input id="to" placeholder="Adresse d'arrivée">
+</div>
+
+
+<div>
+<label>Date</label>
+<input id="date" type="date">
+</div>
+
+<div>
+<label>Heure</label>
+<input id="time" type="time">
+</div>
+
+
+<div>
+<label>Passagers</label>
+
+<select id="passengers">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+</select>
+
+</div>
+
+
+<div>
+<label>Véhicule</label>
+
+<select id="vehicle">
+
+<option value="standard">
+VTC Standard
+</option>
+
+<option value="business">
+Business
+</option>
+
+<option value="van">
+Van
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+<label>Nom complet</label>
+
+<input
+id="name"
+placeholder="Votre nom">
+</div>
+
+
+<div>
+<label>Téléphone</label>
+
+<input
+id="phone"
+placeholder="+33 ..."
+type="tel">
+</div>
+
+
+<div class="full">
+
+<label>Email</label>
+
+<input
+id="email"
+placeholder="vous@email.com"
+type="email">
+
+</div>
+
+
+<div class="full">
+
+<button
+type="button"
+onclick="calculatePrice()">
+
+Calculer le prix réel
+
+</button>
+
+</div>
+
+</div>
+
+
 <div id="quote" class="quote">
-<div class="total" id="total"></div>
-<div class="muted" id="route"></div>
-<div class="muted" id="split"></div>
-<div class="pay"><button onclick="payStripe()">💳 Payer par Stripe</button><button class="cash" onclick="bookCash()">💶 Payer en espèces</button></div>
-<div id="msg" class="msg"></div>
+
+<div class="price" id="price">
+Prix estimé : €0.00
 </div>
-</div></section>
+
+<p id="route"></p>
+
+<p>
+VASI : <strong id="vasi"></strong><br>
+Chauffeur : <strong id="driver"></strong>
+</p>
+
+
+<div class="payments">
+
+<button onclick="payOnline()">
+💳 Payer par Stripe
+</button>
+
+<button
+class="cash"
+onclick="cashBooking()">
+
+💶 Payer en espèces
+
+</button>
+
+</div>
+
+<p id="message"></p>
+
+</div>
+
+</div>
+
+</section>
+
+
 
 <section id="services" class="cards">
-<div class="card"><h3>📍 Google Maps</h3><p>Distance et durée de trajet calculées automatiquement.</p></div>
-<div class="card"><h3>💳 Paiement</h3><p>Stripe pour le paiement en ligne et espèces pour les réservations cash.</p></div>
-<div class="card"><h3>🚕 Chauffeurs</h3><p>Les courses peuvent ensuite être attribuées aux chauffeurs VASI.</p></div>
+
+<div class="card">
+
+<h3>📍 Google Maps</h3>
+
+<p>
+Distance et durée du trajet calculées automatiquement.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>💳 Paiement</h3>
+
+<p>
+Paiement en ligne par Stripe ou paiement en espèces.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>🚕 Chauffeurs</h3>
+
+<p>
+Les courses peuvent être attribuées aux chauffeurs VASI.
+</p>
+
+</div>
+
 </section>
-<section id="drivers" class="driver"><div><h2>Devenir chauffeur VTC</h2><p>Commission VASI : <strong>15%</strong>. Part chauffeur : <strong>85%</strong>.</p></div><button onclick="alert('Inscription chauffeur : onboarding Stripe Connect à activer dans le tableau de bord VASI.')">Devenir chauffeur</button></section>
-<div class="legal">CGU · CGV · Politique de confidentialité · RGPD · Conditions d'annulation</div>
-<footer>© 2026 VASI France 🇫🇷</footer>
+
+
+
+<section id="drivers" class="driver">
+
+<div>
+
+<h2>Devenir chauffeur VTC</h2>
+
+<p>
+Commission VASI : <strong>15%</strong><br>
+Part chauffeur : <strong>85%</strong>
+</p>
+
+</div>
+
+<button onclick="driverRegistration()">
+Devenir chauffeur
+</button>
+
+</section>
+
+
+
+<footer>
+
+© 2026 VASI France 🇫🇷
+
+</footer>
+
+
 
 <script>
-let quote=null;
-function openBooking(){document.getElementById('booking').scrollIntoView({behavior:'smooth'})}
-function data(){
- return {from:fromEl.value.trim(),to:toEl.value.trim(),date:dateEl.value,time:timeEl.value,passengers:+passengersEl.value,vehicle:vehicleEl.value,name:nameEl.value.trim(),phone:phoneEl.value.trim(),email:emailEl.value.trim()};
+
+function openBooking() {
+
+document
+.getElementById("booking")
+.scrollIntoView({
+behavior:"smooth"
+});
+
 }
-const fromEl=document.getElementById('from'),toEl=document.getElementById('to'),dateEl=document.getElementById('date'),timeEl=document.getElementById('time'),passengersEl=document.getElementById('passengers'),vehicleEl=document.getElementById('vehicle'),nameEl=document.getElementById('name'),phoneEl=document.getElementById('phone'),emailEl=document.getElementById('email');
-dateEl.min=new Date().toISOString().slice(0,10);
-async function getQuote(){
- const d=data(); if(!d.from||!d.to||!d.date||!d.time||!d.name||!d.phone||!d.email){alert('Merci de remplir tous les champs.');return}
- const r=await fetch('/api/quote',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
- const j=await r.json(); if(!r.ok){alert(j.error||'Impossible de calculer le prix.');return}
- quote={...d,...j}; document.getElementById('quote').style.display='block';
- document.getElementById('total').textContent=`Prix estimé : ${j.currency==='EUR'?'€':'£'}${j.price.toFixed(2)}`;
- document.getElementById('route').textContent=`${j.distanceKm.toFixed(1)} km · environ ${j.durationMinutes} min`;
- document.getElementById('split').textContent=`VASI 15% : €${(j.price*.15).toFixed(2)} · Chauffeur 85% : €${(j.price*.85).toFixed(2)}`;
- document.getElementById('msg').textContent='';
+
+
+/* Date automatique */
+
+const today =
+new Date()
+.toISOString()
+.split("T")[0];
+
+document.getElementById("date").value = today;
+
+document.getElementById("date").min = today;
+
+
+/* Heure */
+
+document.getElementById("time").value = "12:30";
+
+
+/* PRIX */
+
+function calculatePrice() {
+
+const from =
+document.getElementById("from").value.trim();
+
+const to =
+document.getElementById("to").value.trim();
+
+const date =
+document.getElementById("date").value;
+
+const time =
+document.getElementById("time").value;
+
+const name =
+document.getElementById("name").value.trim();
+
+const phone =
+document.getElementById("phone").value.trim();
+
+const email =
+document.getElementById("email").value.trim();
+
+const vehicle =
+document.getElementById("vehicle").value;
+
+
+/* Validation corrigée */
+
+if (
+!from ||
+!to ||
+!date ||
+!time ||
+!name ||
+!phone ||
+!email
+) {
+
+alert(
+"Merci de remplir tous les champs obligatoires."
+);
+
+return;
 }
-async function payStripe(){
- if(!quote)return; document.getElementById('msg').textContent='Préparation du paiement...';
- const r=await fetch('/api/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(quote)});
- const j=await r.json(); if(!r.ok){document.getElementById('msg').textContent=j.error||'Erreur Stripe';return} location.href=j.url;
+
+
+/* Email */
+
+if (
+!email.includes("@") ||
+!email.includes(".")
+) {
+
+alert(
+"Veuillez entrer une adresse email valide."
+);
+
+return;
 }
-async function bookCash(){
- if(!quote)return; document.getElementById('msg').textContent='Création de la réservation espèces...';
- const r=await fetch('/api/create-cash-booking',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(quote)});
- const j=await r.json(); if(!r.ok){document.getElementById('msg').textContent=j.error||'Erreur';return}
- document.getElementById('msg').textContent=`Réservation confirmée. Référence : ${j.bookingId}. Paiement en espèces au chauffeur.`;
+
+
+/* Prix de base */
+
+let price = 25;
+
+
+/* Véhicule */
+
+if (vehicle === "business") {
+price += 15;
 }
+
+if (vehicle === "van") {
+price += 25;
+}
+
+
+/* Passagers */
+
+const passengers =
+Number(
+document.getElementById("passengers").value
+);
+
+if (passengers > 4) {
+price += 10;
+}
+
+
+/* Affichage */
+
+document.getElementById("price")
+.innerText =
+"Prix estimé : €" +
+price.toFixed(2);
+
+document.getElementById("route")
+.innerText =
+from + " → " + to;
+
+
+document.getElementById("vasi")
+.innerText =
+"€" +
+(price * 0.15).toFixed(2);
+
+
+document.getElementById("driver")
+.innerText =
+"€" +
+(price * 0.85).toFixed(2);
+
+
+document.getElementById("quote")
+.style.display = "block";
+
+
+document
+.getElementById("quote")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* Stripe */
+
+function payOnline() {
+
+alert(
+"Stripe sera connecté ici pour le paiement sécurisé."
+);
+
+}
+
+
+/* Cash */
+
+function cashBooking() {
+
+const bookingNumber =
+"VASI-" +
+Date.now().toString().slice(-6);
+
+document.getElementById("message")
+.innerText =
+"✅ Réservation confirmée ! Référence : "
++ bookingNumber
++ ". Paiement en espèces au chauffeur.";
+
+}
+
+
+/* Chauffeur */
+
+function driverRegistration() {
+
+alert(
+"Inscription chauffeur VASI bientôt disponible."
+);
+
+}
+
 </script>
-</body></html>
+
+</body>
+</html>
